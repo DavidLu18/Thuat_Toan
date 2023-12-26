@@ -47,6 +47,39 @@ void InterchangeSort(int a[],int n){
     }
 }
 
+void selectionSort(int a[],int n){
+    for (int i = 0;i<n-1;i++){
+        int minIndex = i;
+        for (int j = i+1;j<n;j++){
+            if(a[j]<a[minIndex]){
+                minIndex = j;
+            }
+        }
+        swap(a[i],a[minIndex]);
+    }
+}
+
+void quickSort(int a[],int left,int right){
+    int i = left;
+    int j = right;
+    int pivot = a[(left+right)/2];
+    while(i<=j){
+        while(a[i]<pivot) i++;
+        while(a[j]>pivot) j--;
+        if(i<=j){
+            swap(a[i],a[j]);
+            i++;
+            j--;
+        }
+    }
+    if(left<j){
+        quickSort(a,left,j);
+    }
+    if(i<right){
+        quickSort(a,i,right);
+    }
+}
+
 int main()
 {
     int n;
@@ -64,6 +97,8 @@ int main()
     cout<<"1/ Tim Kiem Tuyen Tinh"<<endl;
     cout<<"2/ Tim Kiem Nhi Phan"<<endl;
     cout<<"3/ Sap Xep Doi Cho Truc Tiep"<<endl;
+    cout<<"4/ Sap Xep Chon"<<endl;
+    cout<<"5/ Sap Xep Nhanh"<<endl;
     cout<<"0/ Ket Thuc Chuong Trinh."<<endl;
     cout<<"Ban chon: ";
     cin>>chon;
@@ -80,6 +115,23 @@ int main()
             break;
         case 3:
             InterchangeSort(a,n);
+            cout<<"Mang sau khi sap xep: ";
+            for (int i = 0; i<n;i++){
+                cout<<a[i]<<" ";
+            }
+            cout<<endl;
+            break;
+        
+        case 4:
+            selectionSort(a,n);
+            cout<<"Mang sau khi sap xep: ";
+            for (int i = 0; i<n;i++){
+                cout<<a[i]<<" ";
+            }
+            cout<<endl;
+            break;
+        case 5:
+            quickSort(a,0,n-1);
             cout<<"Mang sau khi sap xep: ";
             for (int i = 0; i<n;i++){
                 cout<<a[i]<<" ";
